@@ -1942,6 +1942,27 @@ settings: {
     pasteImage: '이미지 붙여넣기',
     url: 'URL…',
     promptSnippets: '프롬프트 조각…',
+    tipPre: '팁: ',
+    tipPost: '을 입력하면 파일을 메시지 안에서 참조할 수 있습니다.',
+    snippetsTitle: '프롬프트 조각',
+    snippetsDesc: '입력창에 넣을 시작 프롬프트를 선택하세요.',
+    snippets: {
+      codeReview: {
+        label: '코드 검토',
+        description: '현재 변경 사항에서 회귀, 누락된 예외 상황 및 부족한 테스트를 점검합니다.',
+        text: '버그, 회귀 및 누락된 테스트가 있는지 검토해 주세요.'
+      },
+      implementationPlan: {
+        label: '구현 계획',
+        description: '변경 범위를 명확하게 유지하도록 코드를 수정하기 전에 접근 방법을 정리합니다.',
+        text: '코드를 변경하기 전에 간결한 구현 계획을 작성해 주세요.'
+      },
+      explainThis: {
+        label: '이 코드 설명',
+        description: '선택한 코드가 어떻게 작동하는지 설명하고 핵심 파일을 안내합니다.',
+        text: '이 코드가 어떻게 작동하는지 설명하고 핵심 파일을 알려 주세요.'
+      }
+    },
     dropFiles: '파일을 놓아 첨부',
     dropSession: '놓아서 이 대화에 연결'
   },

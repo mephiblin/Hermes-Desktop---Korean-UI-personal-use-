@@ -13,6 +13,7 @@
 
 - `apps/desktop/src/i18n/ko.ts`
 - `apps/desktop/src/i18n/ko-settings-fields.ts`
+- `apps/desktop/src/i18n/ko-slash-commands.ts`
 - `apps/desktop/src/i18n/catalog.ts`
 - `apps/desktop/src/i18n/languages.ts`
 - `apps/desktop/src/i18n/languages.test.ts`
@@ -23,6 +24,7 @@
 - `apps/desktop/src/app/settings/field-copy.ts`
 - `apps/desktop/src/app/messaging/index.tsx`
 - `apps/desktop/src/plugins/kanban/i18n.ts`
+- `apps/desktop/src/app/chat/composer/hooks/use-slash-completions.ts`
 
 `Hermes-Desktop-Korean-v2026.8.27.tar.gz`는 위 소스와 이 문서의 압축 사본입니다.
 
@@ -124,6 +126,13 @@
 - 프롬프트 조각 선택 팝업의 제목과 사용 안내
 - 코드 검토, 구현 계획, 코드 설명 항목의 이름과 상세 설명
 - 선택 시 입력창에 삽입되는 실제 시작 프롬프트
+
+### 슬래시 명령 팔레트
+
+- 입력창에서 `/`를 입력할 때 나타나는 내장 Desktop 명령 34개의 한국어 설명
+- 세션, 설정, 명령, 옵션, 테마, 도구 및 Skill 등의 그룹 제목
+- `/new`, `/goal`, `/tools` 같은 실행 명령과 옵션 저장값은 원문 유지
+- 사용자 설치 Skill과 플러그인 명령의 설명은 작성자가 정한 의미를 보존하기 위해 원문 유지
 
 ## 남은 주요 미번역 영역
 

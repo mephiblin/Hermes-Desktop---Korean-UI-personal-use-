@@ -1,10 +1,10 @@
 # Hermes Desktop 한국어 패치 백업
 
 - 최초 백업일: 2026-08-29
-- 최근 갱신일: 2026-08-30
-- 기준 Hermes 릴리스: `v2026.8.27`
-- 기준 Git 커밋: `5fc308a70719a83cccdbba4c0e39c23f5a8239d5`
-- 대상 Desktop 버전: `v0.17.0`
+- 최근 갱신일: 2026-09-05
+- 기준 Hermes 릴리스: `v0.21.0` (2026.8.31+)
+- 기준 Git 커밋: `79445a496c86a19332ad786494b8384d2167e2d0`
+- 대상 Desktop 버전: `v0.17.0+`
 - 번역 범위: 주요 Desktop UI 한국어 번역. 미번역 키는 영어로 대체됩니다.
 
 ## 백업 내용
@@ -24,9 +24,11 @@
 - `apps/desktop/src/app/settings/field-copy.ts`
 - `apps/desktop/src/app/messaging/index.tsx`
 - `apps/desktop/src/plugins/kanban/i18n.ts`
+- `apps/desktop/src/plugins/hermes-bots/i18n.ts`
+- `apps/desktop/src/plugins/hermes-bots/i18n.test.ts`
 - `apps/desktop/src/app/chat/composer/hooks/use-slash-completions.ts`
 
-`Hermes-Desktop-Korean-v2026.8.27.tar.gz`는 위 소스와 이 문서의 압축 사본입니다.
+`Hermes-Desktop-Korean-v2026.8.31.tar.gz`는 위 소스와 이 문서의 압축 사본입니다.
 
 ## 번역 현황
 
@@ -172,7 +174,7 @@ Blueprint의 내부 key, 옵션 저장값, cron 표현식 및 실행 prompt temp
 
 ```bash
 HERMES_REPO="$HOME/.hermes/hermes-agent"
-PATCH_ARCHIVE="$HOME/Downloads/Hermes-Desktop-Korean-v2026.8.27.tar.gz"
+PATCH_ARCHIVE="$HOME/Downloads/Hermes-Desktop-Korean-v2026.8.31.tar.gz"
 RESTORE_DIR="/tmp/hermes-ko-restore"
 ```
 

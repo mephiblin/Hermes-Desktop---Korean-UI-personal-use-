@@ -1,10 +1,10 @@
 # Hermes Desktop 한국어 패치 백업
 
 - 최초 백업일: 2026-08-29
-- 최근 갱신일: 2026-09-05
-- 기준 Hermes 릴리스: `v0.21.0` (2026.8.31+)
-- 기준 Git 커밋: `79445a496c86a19332ad786494b8384d2167e2d0`
-- 대상 Desktop 버전: `v0.17.0+`
+- 최근 갱신일: 2026-09-17
+- 기준 Hermes 릴리스: `v2026.9.14` / Agent `v0.21.3`
+- 기준 Git 커밋: `bf213ca6cf1d`
+- 대상 Desktop 버전: `v0.17.2`
 - 번역 범위: 주요 Desktop UI 한국어 번역. 미번역 키는 영어로 대체됩니다.
 
 ## 백업 내용
@@ -28,11 +28,12 @@
 - `apps/desktop/src/plugins/hermes-bots/i18n.test.ts`
 - `apps/desktop/src/app/chat/composer/hooks/use-slash-completions.ts`
 
-`Hermes-Desktop-Korean-v2026.8.31.tar.gz`는 위 소스와 이 문서의 압축 사본입니다.
+`Hermes-Desktop-Korean-v2026.9.14.tar.gz`는 위 소스와 이 문서의 압축 사본입니다.
 
 ## 번역 현황
 
-2026-08-30 기준 영어 locale의 표시 항목 3,182개 중 약 2,278개에 한국어 문구가
+2026-09-17 기준 기존 주요 UI 번역에 Desktop 0.17.2의 새 연결 및 세션 가져오기
+화면을 보강했습니다. 이전 집계에서는 영어 locale의 표시 항목 3,182개 중 약 2,278개에 한국어 문구가
 별도로 정의되어 있습니다(약 71.6%). 제품명과 기술 식별자처럼 의도적으로
 원문을 유지한 항목도 있으므로 이 수치는 완성도 자체가 아니라 코드상의
 한국어 override 수를 뜻합니다. 정의되지 않은 항목은 영어로 안전하게 대체됩니다.
@@ -50,6 +51,8 @@
 - Desktop 시작 단계와 게이트웨이 연결 상태
 - 시작 실패, 설치 복구, 로컬 게이트웨이 전환, 로그 열기 및 원격 로그인
 - 알림 목록의 보기, 숨기기, 지우기 및 업데이트 안내
+- 앱 연결·재인증·상태 확인과 연결 없이 시작하기
+- Claude Code·Codex 세션 검색, 미리 보기, 가져오기 및 Hermes에서 계속하기
 
 ### 대화와 에이전트
 
@@ -174,7 +177,7 @@ Blueprint의 내부 key, 옵션 저장값, cron 표현식 및 실행 prompt temp
 
 ```bash
 HERMES_REPO="$HOME/.hermes/hermes-agent"
-PATCH_ARCHIVE="$HOME/Downloads/Hermes-Desktop-Korean-v2026.8.31.tar.gz"
+PATCH_ARCHIVE="$HOME/Downloads/Hermes-Desktop-Korean-v2026.9.14.tar.gz"
 RESTORE_DIR="/tmp/hermes-ko-restore"
 ```
 
@@ -192,7 +195,7 @@ tar -xzf "$PATCH_ARCHIVE" -C "$RESTORE_DIR"
 
 ### 2. 호환성 확인
 
-이 백업의 기준 버전은 Hermes `v2026.8.27`, Desktop `v0.17.0`입니다. 같은
+이 백업의 기준 버전은 Hermes `v2026.9.14`, Agent `v0.21.3`, Desktop `v0.17.2`입니다. 같은
 버전에서는 `source/` 아래 파일을 저장소에 복사할 수 있습니다. Hermes가
 업데이트된 뒤라면 파일 전체를 바로 덮어쓰지 말고 최신 i18n 변경 사항과 먼저
 비교해야 합니다. 특히 `catalog.ts`, `languages.ts`, `types.ts`,

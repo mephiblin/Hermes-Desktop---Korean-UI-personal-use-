@@ -163,6 +163,7 @@ type BotsMessages = {
     deleteTitle: string
     deleteAction: string
     composerPlaceholder: string
+    slashCommandsUnsupported: string
     attachHint: string
     newThread: string
     reply: string
@@ -387,6 +388,8 @@ const en: BotsMessages = {
     deleteTitle: 'Delete group chat?',
     deleteAction: 'Delete',
     composerPlaceholder: 'Say something — every bot in this group hears the room.',
+    slashCommandsUnsupported:
+      'Slash commands are not supported in group chats. Open an individual bot chat to use them.',
     attachHint: 'Attach files — every responding bot sees them',
     newThread: 'New Thread',
     reply: 'Reply',
@@ -604,6 +607,8 @@ const ja: BotsMessages = {
     deleteTitle: 'グループチャットを削除しますか？',
     deleteAction: '削除',
     composerPlaceholder: '何か書いてください — このグループのすべてのボットが部屋の内容を受け取ります。',
+    slashCommandsUnsupported:
+      'グループチャットではスラッシュコマンドを使用できません。個別のボットチャットを開いて使用してください。',
     attachHint: 'ファイルを添付 — 応答するすべてのボットが見ます',
     newThread: '新しいスレッド',
     reply: '返信',
@@ -817,6 +822,7 @@ const zh: BotsMessages = {
     deleteTitle: '删除群聊？',
     deleteAction: '删除',
     composerPlaceholder: '说点什么 — 这个群里的每个机器人都会听到。',
+    slashCommandsUnsupported: '群聊不支持斜杠命令。请打开单个机器人的聊天来使用。',
     attachHint: '附加文件 — 每个回应的机器人都能看到',
     newThread: '新帖子',
     reply: '回复',
@@ -1030,6 +1036,7 @@ const zhHant: BotsMessages = {
     deleteTitle: '刪除群組聊天？',
     deleteAction: '刪除',
     composerPlaceholder: '說點什麼 — 這個群組裡的每個機器人都會聽到。',
+    slashCommandsUnsupported: '群組聊天不支援斜線命令。請開啟個別機器人的聊天來使用。',
     attachHint: '附加檔案 — 每個回應的機器人都能看到',
     newThread: '新討論串',
     reply: '回覆',
@@ -1192,7 +1199,9 @@ const ko: BotsMessages = {
     manageTitle: '그룹 관리', settingsTitle: '그룹 설정', settingsDesc: '그룹 이름을 바꾸거나 방 사진을 설정하세요. 멤버와 기록은 유지됩니다.',
     nameLabel: '그룹 이름', searchToAdd: '추가할 봇 검색', searchToAddPlaceholder: '추가할 봇 검색…', removeFromSelection: '선택에서 제거',
     disbandTitle: '그룹 채팅을 해체할까요?', deleteTitle: '그룹 채팅을 삭제할까요?', deleteAction: '삭제',
-    composerPlaceholder: '메시지를 입력하세요 — 이 그룹의 모든 봇이 내용을 받습니다.', attachHint: '파일 첨부 — 응답하는 모든 봇이 볼 수 있습니다',
+    composerPlaceholder: '메시지를 입력하세요 — 이 그룹의 모든 봇이 내용을 받습니다.',
+    slashCommandsUnsupported: '그룹 채팅에서는 슬래시 명령어를 사용할 수 없습니다. 개별 봇 채팅을 열어 사용하세요.',
+    attachHint: '파일 첨부 — 응답하는 모든 봇이 볼 수 있습니다',
     newThread: '새 스레드', reply: '답글', replyInThread: '스레드에 답글', replyInThreadPlaceholder: '스레드에 답글…',
     openThread: '이 스레드 열기', collapseThread: '스레드 접기', collapseThreadLabel: '이 스레드 접기', activity: '활동',
     noActivityYet: '이번 차례에는 아직 활동이 없습니다.', showActivity: '방 활동 표시', hideActivity: '방 활동 숨기기', stop: '중지',

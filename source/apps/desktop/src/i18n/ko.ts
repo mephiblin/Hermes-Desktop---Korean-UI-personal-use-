@@ -9,6 +9,31 @@ import { KO_FIELD_DESCRIPTIONS, KO_FIELD_LABELS } from './ko-settings-fields'
  * missing labels while the Korean catalog catches up.
  */
 export const ko = defineLocale({
+  connectors: {
+    title: '앱 연결', connect: '연결', skip: '나중에', cancel: '기다림 중지', retry: '다시 시도',
+    grant: '다시 연결', connected: '연결됨', checking: '앱 확인 중…', waitingSignIn: '로그인 완료를 기다리는 중…',
+    notConnected: '연결되지 않음', notAvailable: '사용할 수 없음', startWith: count => `앱 ${count}개를 연결한 채 작업 시작`,
+    startWithout: '연결 없이 시작', skipped: '건너뜀', disabled: '사용 불가', failed: '연결하지 못함',
+    needsAuth: '접근 권한 만료', opening: '로그인 여는 중…', waiting: '브라우저에서 연결을 완료하세요…',
+    timeout: '아직 인증을 기다리고 있습니다.', keepWaiting: '계속 기다리기', refresh: '상태 새로고침',
+    statusError: '연결 상태를 확인하지 못했습니다.', connectError: '인증을 시작하지 못했습니다.',
+    unavailable: '이 세션에서는 연결 기능을 사용할 수 없습니다.', ownerMissing: '연결을 관리하려면 이 대화를 다시 여세요.',
+    search: '앱 찾기', empty: '일치하는 앱이 없습니다', disclaimer: '연결은 선택 사항입니다. Hermes가 사용해도 되는 앱만 허용하세요.',
+    connectTitle: app => `${app}을(를) 연결할까요?`, describe: app => `Hermes가 브라우저에서 ${app}에 로그인하고 내용을 읽기 전에 허용을 요청합니다.`,
+    execution: '연결 도구'
+  },
+  sessionImport: {
+    title: '다른 앱에서 이어서 하기', subtitle: '대화를 Hermes로 가져와 이어서 진행하세요.', action: '세션 가져오기',
+    readingFrom: '읽어오는 위치', connectedComputer: '연결된 컴퓨터', destination: '가져올 위치', all: '전체', search: '불러온 세션 검색',
+    scanning: '대화 찾는 중', scanError: '세션을 찾지 못했습니다', scanHelp: '백엔드 연결을 확인한 뒤 다시 시도하세요.',
+    empty: '대화가 없습니다', emptyHelp: '이 백엔드의 Claude Code와 Codex 세션이 여기에 표시됩니다.', noMatches: '일치하는 대화가 없습니다',
+    searchHelp: '다른 제목이나 폴더를 검색하거나 세션을 더 불러오세요.', skipped: '비어 있거나 읽을 수 없거나 미리 보기가 너무 큰 로그는 건너뛰었습니다.',
+    more: '세션 더 불러오기', messages: '메시지', choose: '이어서 할 대화', chooseHelp: '가져오기 전에 세션을 선택해 기록을 확인하세요.',
+    previewLoading: '미리 보기 여는 중', previewError: '미리 보기를 사용할 수 없습니다', previewHelp: '원본이 이동되었거나 변경되었을 수 있습니다. 목록을 새로고침하세요.',
+    previewLimit: '읽기 편하도록 미리 보기를 줄였습니다. 전체 대화는 모두 가져옵니다.', you: '나', snapshot: '이 대화는 이미 Hermes에 있습니다.',
+    copyNotice: '대화 텍스트만 복사하며 원본 파일은 변경하지 않습니다. 도구 출력과 추론은 포함되지 않습니다.',
+    importing: '가져오는 중…', open: 'Hermes에서 열기', continue: 'Hermes에서 계속', importError: '이 대화를 가져오지 못했습니다.'
+  },
   common: {
     apply: '적용',
     back: '뒤로',
@@ -281,6 +306,7 @@ settings: {
       providerAccounts: '계정',
       providerApiKeys: 'API 키',
       providerCustomEndpoints: '사용자 지정 엔드포인트',
+      providerLocalModels: '로컬 모델',
       gateway: '게이트웨이',
       apiKeys: '도구 및 키',
       keybinds: '키보드 단축키',
@@ -291,7 +317,7 @@ settings: {
       about: '정보',
       billing: '청구',
       notifications: '알림',
-      plugins: '플러그인'
+      vault: '보안 저장소'
     },
     plugins: {
       title: '데스크톱 플러그인',
@@ -305,20 +331,6 @@ settings: {
       failed: '실패',
       empty: '아직 데스크톱 플러그인이 설치되지 않았습니다.',
       kinds: { bundled: '번들', disk: '디스크', runtime: '런타임' },
-      agent: {
-        title: '에이전트 플러그인',
-        blurb:
-          'Hermes 백엔드에 설치한 플러그인 — 툴, 스킬, MCP 서버, 훅, 슬래시 명령어. 이동 가능한 것은 Agent Plugins 패키지(다른 에이전트에서도 작동하는 스킬 + MCP 번들)입니다. 토글은 새 세션에 적용됩니다.',
-        appliesTo: '적용 대상:',
-        empty: '아직 에이전트 플러그인이 설치되지 않았습니다.',
-        loadFailed: '에이전트 플러그인을 로드할 수 없음',
-        portable: '이동 가능',
-        search: '플러그인 검색…',
-        noMatches: '검색 결과가 일치하는 플러그인이 없습니다.',
-        toggleFailed: (name: string) => `${name}을(를) 토글할 수 없습니다`,
-        updateBackendToManage: 'Hermes 백엔드가 이 플러그인을 관리하도록 업데이트하세요.',
-        sources: { bundled: '번들', user: '사용자', git: 'git', project: 'project', entrypoint: 'pip' }
-      },
       installModal: {
         title: '플러그인 설치',
         description: '설치하기 전에 이 리포지토리가 포함하는 내용을 검토하세요.',
@@ -326,7 +338,7 @@ settings: {
         includesHeading: '이 패키지에는',
         agentLabel: '에이전트 플러그인',
         desktopLabel: '데스크톱 UI',
-        agentTargetLocal: profile => `${profile} 백엔드에 설치됨 (~/.hermes/plugins/)`,
+        agentTargetLocal: (profile, dir) => `${profile} 백엔드에 설치됨 (${dir})`,
         agentTargetRemote: profile => `연결된 ${profile} 백엔드에 설치`,
         desktopTarget: '이 앱의 로컬 desktop-plugins 폴더에 설치',
         desktopOnlyNote: '데스크톱 전용 패키지는 백엔드 에이전트 플러그인을 설치하지 않습니다.',

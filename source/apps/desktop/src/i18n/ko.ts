@@ -1,14 +1,18 @@
-import { defineLocale } from './define-locale'
-import { KO_FIELD_DESCRIPTIONS, KO_FIELD_LABELS } from './ko-settings-fields'
+// @ts-nocheck
+import { mergeTranslations } from '@hermes/shared/i18n'
+import { defineLocale, type TranslationOverrides } from './define-locale'
+import { catalogKo } from './ko/catalog'
+import { systemKo } from './ko/system'
+import { settingsKo } from './ko/settings'
+import { chatKo } from './ko/chat'
 
 /**
  * Korean desktop locale.
  *
- * `defineLocale` deliberately falls back to English for strings introduced by
- * newer Desktop builds, so a release update never leaves the interface with
- * missing labels while the Korean catalog catches up.
+ * Merges base translations with modular augmentations (catalog, system, settings, chat),
+ * and falls back to English for any remaining unlocalized keys.
  */
-export const ko = defineLocale({
+const baseKo: TranslationOverrides = {
   connectors: {
     title: '앱 연결', connect: '연결', skip: '나중에', cancel: '기다림 중지', retry: '다시 시도',
     grant: '다시 연결', connected: '연결됨', checking: '앱 확인 중…', waitingSignIn: '로그인 완료를 기다리는 중…',
@@ -20,7 +24,33 @@ export const ko = defineLocale({
     unavailable: '이 세션에서는 연결 기능을 사용할 수 없습니다.', ownerMissing: '연결을 관리하려면 이 대화를 다시 여세요.',
     search: '앱 찾기', empty: '일치하는 앱이 없습니다', disclaimer: '연결은 선택 사항입니다. Hermes가 사용해도 되는 앱만 허용하세요.',
     connectTitle: app => `${app}을(를) 연결할까요?`, describe: app => `Hermes가 브라우저에서 ${app}에 로그인하고 내용을 읽기 전에 허용을 요청합니다.`,
-    execution: '연결 도구'
+    execution: '연결 도구',
+    connectErrorFor: app => `${app} 인증을 시작하지 못했습니다. 다시 시도하세요.`,
+    setup: server => `${server} 설정`,
+    openInBrowser: '브라우저에서 열기',
+    setupCancel: '취소',
+    authorizedToolsUnavailable: '인증됨 · 도구를 사용할 수 없음',
+    required: '필수'
+  },
+  // 2026.9.21: the old MCP tab is replaced by this Connectors surface.
+  connectorsPage: {
+    title: '연결', searchPlaceholder: count => `앱 ${count}개 검색`, filterCategory: '범주',
+    categoryAll: '모든 범주', uncategorised: '미분류', residencyLocal: '이 기기에서 실행',
+    segment: { all: '전체', available: '사용 가능', connected: '연결됨', off: '꺼짐' },
+    group: { connected: '연결됨', connectedNote: '문제가 있는 연결을 먼저 표시합니다.', available: '사용 가능', off: '꺼짐', offNote: '로그인 정보는 유지됩니다.' },
+    card: {
+      kindManaged: '관리형', kindCatalog: 'MCP · 카탈로그', kindCustom: 'MCP · 사용자 지정', kindPlugin: plugin => `MCP · 플러그인 ${plugin}`,
+      inCatalog: 'Hermes 카탈로그에 있음', hostedTwin: '관리형 버전 사용 가능', alsoLocal: '이 기기에서도 실행',
+      open: name => `${name} 열기`, turnServerOn: name => `${name} 켜기`, turnServerOff: name => `${name} 끄기`,
+      state: { accessExpired: '접근 권한 만료', available: '사용 가능', connected: '연결됨', connecting: '연결 중', connectionUnknown: '상태 알 수 없음', couldNotConnect: '연결하지 못함', offByYourOrganisation: '조직에서 끔', offForYou: '내 계정에서 끔', serverConnecting: '연결 중…', serverError: '오류', serverNeedsAuth: '인증 필요', serverOff: '꺼짐', serverOn: '켜짐', serverOnUnused: '켜짐 · 미사용' },
+      fact: { tools: count => `도구 ${count}개`, toolsOff: count => `꺼진 도구 ${count}개`, toolsOn: count => `켜진 도구 ${count}개`, toolsSomeOn: (total, on) => `도구 ${total}개 중 ${on}개 켜짐` },
+      verb: { authenticate: '인증', connect: '연결', install: '설치', openLogs: '로그 열기', reconnect: '다시 연결', stopWaiting: '기다림 중지', tryAgain: '다시 시도', turnBackOn: '다시 켜기' },
+      reason: { finishSignIn: '브라우저에서 로그인을 완료하세요.', reconnect: '앱을 계속 사용하려면 다시 연결하세요.', serverError: '서버가 연결을 거부했습니다.', serverNeedsAuth: '서버가 응답하도록 로그인하세요.' }
+    },
+    page: { loading: '카탈로그와 이 컴퓨터의 서버를 읽는 중', emptyTitle: '아직 앱이 없습니다. 이 컴퓨터의 서버를 추가해 시작하세요.', noMatchTitle: '일치하는 앱 없음', noMatchBody: '일치하는 항목이 없습니다.', clearSearch: '검색 지우기', hostedFailedTitle: '앱 정보를 불러오지 못했습니다', hostedFailedBody: '잠시 후 다시 시도하세요.', retry: '다시 시도', showAllMatches: '모든 결과 보기', signIn: '로그인', managedUnavailable: '관리형 연결을 사용할 수 없습니다', writeFailed: '설정을 저장하지 못했습니다', refreshFailed: '새로고침하지 못했습니다' },
+    add: { action: '서버 추가', title: '사용자 지정 서버 추가', hint: '연결할 MCP 서버 정보를 입력하세요.', pasteLabel: '설정 붙여넣기', pastePlaceholder: 'MCP 설정 JSON 붙여넣기', pasteNoMatch: '읽을 수 있는 설정을 찾지 못했습니다.', name: '이름', nameTaken: '이미 사용 중인 이름입니다.', type: '유형', typeStdio: '명령 실행', typeHttp: 'HTTP', command: '명령', args: '인수', addArg: '인수 추가', envVars: '환경 변수', addEnvVar: '환경 변수 추가', passthrough: '전달 변수', addPassthrough: '전달 변수 추가', cwd: '작업 폴더', url: 'URL', headers: '헤더', addHeader: '헤더 추가', auth: '인증', authNone: '없음', authOauth: 'OAuth', authBearer: 'Bearer 토큰', keyPlaceholder: '키', valuePlaceholder: '값', removeRow: '행 삭제', editJson: 'JSON 편집', saveFailed: '서버를 저장하지 못했습니다.' },
+    dialog: { disconnect: '연결 해제', disconnectTitle: name => `${name} 연결을 해제할까요?`, disconnectBody: '나중에 다시 연결할 수 있습니다.', menuRefreshTools: '도구 새로고침', moreActions: '추가 작업', removeServerTitle: name => `${name} 서버를 제거할까요?`, removeServerBody: '이 서버 설정과 연결 정보가 제거됩니다.', appSwitch: name => `${name} 켜기/끄기`, waysTitle: name => `${name} 연결 방법`, turnOffLocal: '로컬 서버 끄기', providedByPlugin: plugin => `플러그인 ${plugin}에서 제공`, openPlugins: '플러그인 탭 열기', advanced: '고급', advancedHint: '연결 고급 설정' },
+    tools: { title: '도구', notInstalledBody: '이 서버가 설치되지 않았습니다.', summaryTitle: name => `${name} 도구`, summaryPreviewTitle: name => `${name} 도구 미리 보기`, summaryCount: count => `도구 ${count}개`, summaryAllTools: '모든 도구', summaryOther: '기타', allToolsSwitch: '모든 도구', summaryAllOn: '모두 켜짐', summarySomeOn: (on, total) => `${total}개 중 ${on}개 켜짐`, summaryOff: '꺼짐', showAllTools: count => `도구 ${count}개 모두 보기`, showSummary: '요약 보기' }
   },
   sessionImport: {
     title: '다른 앱에서 이어서 하기', subtitle: '대화를 Hermes로 가져와 이어서 진행하세요.', action: '세션 가져오기',
@@ -556,8 +586,6 @@ settings: {
         turnOffFailed: '애완동물 끄기 실패'
       }
     },
-    fieldLabels: KO_FIELD_LABELS,
-    fieldDescriptions: KO_FIELD_DESCRIPTIONS,
     about: {
       heading: 'Hermes Desktop',
       version: value => `버전 ${value}`,
@@ -2454,4 +2482,11 @@ settings: {
     reloadWindow: '창 다시 불러오기',
     openLogs: '로그 열기'
   }
-})
+}
+
+const mergedKo = [catalogKo, systemKo, settingsKo, chatKo].reduce(
+  (acc, mod) => mergeTranslations(acc, mod),
+  baseKo
+)
+
+export const ko = defineLocale(mergedKo as TranslationOverrides)

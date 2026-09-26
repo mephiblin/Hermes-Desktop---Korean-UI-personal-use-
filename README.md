@@ -1,10 +1,10 @@
 # Hermes Desktop 한국어 패치 백업
 
 - 최초 백업일: 2026-08-29
-- 최근 갱신일: 2026-09-17
-- 기준 Hermes 릴리스: `v2026.9.14` / Agent `v0.21.3`
-- 기준 Git 커밋: `bf213ca6cf1d`
-- 대상 Desktop 버전: `v0.17.2`
+- 최근 갱신일: 2026-09-26
+- 최신 증분 기준 Hermes 릴리스: `v2026.9.24` / Agent `v0.21.5+2453.gd0288be`
+- 최신 증분 기준 Git 커밋: `d0288be5b3`
+- 최신 대상 Desktop 버전: `v0.17.6+`
 - 번역 범위: 주요 Desktop UI 한국어 번역. 미번역 키는 영어로 대체됩니다.
 
 ## 백업 내용
@@ -12,12 +12,17 @@
 `source/`에는 저장소 기준 상대 경로를 유지한 다음 파일이 있습니다.
 
 - `apps/desktop/src/i18n/ko.ts`
-- `apps/desktop/src/i18n/ko-settings-fields.ts`
-- `apps/desktop/src/i18n/ko-slash-commands.ts`
+- `apps/desktop/src/i18n/ko/catalog.ts`
+- `apps/desktop/src/i18n/ko/system.ts`
+- `apps/desktop/src/i18n/ko/settings.ts`
+- `apps/desktop/src/i18n/ko/chat.ts`
 - `apps/desktop/src/i18n/catalog.ts`
 - `apps/desktop/src/i18n/languages.ts`
 - `apps/desktop/src/i18n/languages.test.ts`
 - `apps/desktop/src/i18n/types.ts`
+- `apps/desktop/src/i18n/catalog-completeness.test.ts`
+- `apps/desktop/src/i18n/ko-settings-fields.ts`
+- `apps/desktop/src/i18n/ko-slash-commands.ts`
 - `apps/desktop/src/app/cron/blueprints.tsx`
 - `apps/desktop/src/app/cron/blueprints.test.ts`
 - `apps/desktop/src/app/cron/index.tsx`
@@ -28,7 +33,14 @@
 - `apps/desktop/src/plugins/hermes-bots/i18n.test.ts`
 - `apps/desktop/src/app/chat/composer/hooks/use-slash-completions.ts`
 
-`Hermes-Desktop-Korean-v2026.9.14.tar.gz`는 위 소스와 이 문서의 압축 사본입니다.
+`Hermes-Desktop-Korean-v2026.9.14.tar.gz`는 기존 기준판의 압축 사본입니다.
+`Hermes-Desktop-Korean-v2026.9.21.tar.gz`는 최신 Hermes Desktop i18n 구조에 맞춘
+증분 패치입니다. `ko.ts`, `catalog.ts`, `languages.ts`, `types.ts`를 포함하며, 이번
+릴리스의 Connectors 화면 번역을 추가합니다.
+`Hermes-Desktop-Korean-v2026.9.26.tar.gz`는 최신 3,688개 업스트림 커밋(Agent `v0.21.5`)에 대응하는
+대폭 보강 증분 패치입니다. 카탈로그, 스킬 허브, 설정 49개 세부 탭, 상태 스택(목표 루프/Git 코딩 패널),
+웹훅 수신기 및 구독 관리, 로컬 모델 설정 모듈(`ko/catalog.ts`, `ko/system.ts`, `ko/settings.ts`, `ko/chat.ts`)과
+`catalog-completeness.test.ts`를 포함합니다.
 
 ## 번역 현황
 
